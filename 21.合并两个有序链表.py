@@ -32,7 +32,7 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+    def mergeTwoLists1(self, l1: ListNode, l2: ListNode) -> ListNode:
         head = None
         pre = None
         if l1 == None:
@@ -63,6 +63,24 @@ class Solution:
         elif l2 != None:
             pre.next = l2
         return head
+    
+    def mergeTwoLists(self, list1, list2):
+        head = ListNode(-1)
+        pre = head
+        while list1 and list2:
+            if list1.val >= list2.val:
+                pre.next = list2
+                pre = list2
+                list2 = list2.next
+            else:
+                pre.next = list1
+                pre = list1
+                list1 = list1.next
+        if list1 == None:
+            pre.next = list2
+        if list2 == None:
+            pre.next = list1
+        return head.next
 
 
 
